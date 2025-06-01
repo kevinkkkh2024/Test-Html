@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <script>
+        // 目標 URL
+        const targetUrl = "https://www.rthk.hk/radio/radio3";
+
+        try {
+            // 檢查 window.location 是否可用
+            if (typeof window.location !== 'undefined' && window.location) {
+                window.location.href = targetUrl; // 立即轉址
+            } else {
+                throw new Error("無法存取 window.location");
+            }
+        } catch (error) {
+            // 異常處理：若轉址失敗，提供備用方案
+            if (document.createElement('a').click) {
+                const link = document.createElement('a');
+                link.href = targetUrl;
+                link.target = '_blank';
+                link.click();
+            }
+        }
+    </script>
+</body>
+</html>
